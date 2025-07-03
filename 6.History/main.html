@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Метод 6: Эмуляция истории поиска</title>
+</head>
+<body>
+  <h2>Метод 6: Хранение идентификатора в истории переходов (URL History)</h2>
+
+  <p>В этом тесте мы создаём скрытые переходы на URL с уникальным идентификатором, чтобы браузер мог сохранить их в истории.</p>
+
+  <h3>Шаг 1: "Записать" идентификаторы в историю</h3>
+  <button onclick="simulateHistoryWrite()">Добавить ссылки с UID</button>
+  <div id="write-area"></div>
+
+  <h3>Шаг 2: Восстановить — через переход назад</h3>
+  <button onclick="window.history.back()">Назад в истории</button>
+
+  <hr>
+  <h3>Iframe-тест</h3>
+  <iframe src="iframe_history.html" width="100%" height="200" style="border: 1px solid black;"></iframe>
+
+  <script>
+    function simulateHistoryWrite() {
+      const writeArea = document.getElementById('write-area');
+      const uid = 'user_ABC123';
+
+      for (let i = 0; i < 3; i++) {
+        const link = document.createElement('a');
+        link.href = `./history_page.html#${uid}_${i}`;
+        link.innerText = `Скрытая ссылка ${i + 1}`;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+      }
+
+      writeArea.innerText = 'Ссылки с UID добавлены в историю (можно проверить вручную в строке браузера).';
+    }
+  </script>
+</body>
+</html>

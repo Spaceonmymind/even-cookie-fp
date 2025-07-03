@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Промежуточная страница истории</title>
+</head>
+<body>
+  <h2>history_page.html</h2>
+  <p>Вы перешли по скрытой ссылке. Хэш:</p>
+  <p id="hash"></p>
+
+  <button onclick="history.back()">Назад</button>
+
+  <script>
+    document.getElementById('hash').innerText = window.location.hash || '(нет хэша)';
+  </script>
+</body>
+</html>

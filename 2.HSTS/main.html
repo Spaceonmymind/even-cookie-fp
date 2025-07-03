@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Эмуляция HSTS Evercookie</title>
+</head>
+<body>
+  <h2>Метод 2: Эмуляция HSTS (Strict Transport Security)</h2>
+  <p>Этот тест показывает, как HSTS можно использовать для хранения битов.</p>
+
+  <h3>Шаг 1: "Записать" HSTS (эмуляция)</h3>
+  <button onclick="simulateWrite()">Симулировать запись бита</button>
+
+  <h3>Шаг 2: Проверка "сохранённого" HSTS (эмуляция)</h3>
+  <button onclick="simulateRead()">Симулировать чтение бита</button>
+
+  <p id="output"></p>
+
+  <hr>
+  <h3>Iframe-тест: чтение HSTS из другого контекста</h3>
+  <iframe src="iframe_hsts.html" width="100%" height="200" style="border: 1px solid black;"></iframe>
+
+  <script>
+    const keyPrefix = 'hsts_bit_';
+
+    function simulateWrite() {
+      localStorage.setItem(keyPrefix + '0', '1');
+      localStorage.setItem(keyPrefix + '1', '0');
+      localStorage.setItem(keyPrefix + '2', '1');
+      localStorage.setItem(keyPrefix + '3', '1');
+      document.getElementById('output').innerText = 'Симулировано: 1011';
+    }
+
+    function simulateRead() {
+      let result = '';
+      for (let i = 0; i < 4; i++) {
+        const bit = localStorage.getItem(keyPrefix + i) || '0';
+        result += bit;
+      }
+      document.getElementById('output').innerText = 'Результат эмуляции чтения: ' + result;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>LocalStorage Test — Iframe</title>
+</head>
+<body>
+  <h1>iframe.html (во фрейме)</h1>
+  <p>Пробуем прочитать localStorage...</p>
+  <script>
+    let value;
+    try {
+      value = localStorage.getItem("evercookie_uid");
+    } catch (e) {
+      value = "Ошибка доступа: " + e.message;
+    }
+    document.body.insertAdjacentHTML('beforeend', `<p>Значение: <strong>${value}</strong></p>`);
+  </script>
+</body>
+</html>

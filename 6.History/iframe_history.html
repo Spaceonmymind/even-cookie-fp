@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Iframe History Test</title>
+</head>
+<body>
+  <h3>Iframe: тест перехода по истории</h3>
+
+  <button onclick="go()">Эмулировать переход</button>
+  <button onclick="window.history.back()">Назад</button>
+
+  <p id="out"></p>
+
+  <script>
+    function go() {
+      const newHash = '#iframe_user_' + Math.floor(Math.random() * 10000);
+      window.location.hash = newHash;
+      document.getElementById('out').innerText = 'Текущий hash: ' + newHash;
+    }
+
+    // При загрузке страницы — отобразить текущий хэш
+    window.addEventListener('load', () => {
+      document.getElementById('out').innerText =
+        'Текущий hash: ' + (window.location.hash || '(нет)');
+    });
+
+    // При изменении hash — обновить текст
+    window.addEventListener('hashchange', () => {
+      document.getElementById('out').innerText =
+        'Текущий hash: ' + (window.location.hash || '(нет)');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Iframe: Java PersistenceService</title>
+</head>
+<body>
+  <h3>Iframe с Java Web Start</h3>
+  <p>Попытка обращения к PersistenceService...</p>
+
+  <script>
+    // Заглушка: как будто пробуем Java PersistenceService
+    const fingerprint = {
+      method: "Java JNLP PersistenceService",
+      supported: false,
+      error: "Java Web Start не поддерживается в текущем браузере"
+    };
+
+    window.parent.postMessage(fingerprint, window.origin);
+  </script>
+</body>
+</html>

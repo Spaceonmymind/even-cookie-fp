@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Iframe HSTS Reader</title>
+</head>
+<body>
+  <h3>Iframe: чтение \"битов HSTS\"</h3>
+  <p id="iframe-output"></p>
+
+  <script>
+    const keyPrefix = 'hsts_bit_';
+    let result = '';
+
+    for (let i = 0; i < 4; i++) {
+      const bit = localStorage.getItem(keyPrefix + i) || '0';
+      result += bit;
+    }
+
+    document.getElementById('iframe-output').innerText = 'Iframe прочитал: ' + result;
+  </script>
+</body>
+</html>

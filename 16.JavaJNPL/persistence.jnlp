@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="http://localhost:8000/" href="persistence.jnlp">
+  <information>
+    <title>JNLP Fingerprint</title>
+    <vendor>Test</vendor>
+    <description>Использование PersistenceService</description>
+  </information>
+
+  <security>
+    <all-permissions/>
+  </security>
+
+  <resources>
+    <j2se version="1.8+" />
+    <jar href="persistence.jar" main="true"/>
+  </resources>
+
+  <application-desc main-class="PersistenceApp"/>
+</jnlp>

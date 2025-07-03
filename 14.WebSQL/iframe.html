@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSQL iframe</title>
+</head>
+<body>
+    <script>
+        const db = openDatabase('fp_db', '1.0', 'Fingerprint DB', 2 * 1024 * 1024);
+
+        db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS fp (id unique, value)');
+            tx.executeSql('SELECT * FROM fp', [], function (tx, results) {
+                if (results.rows.length > 0) {
+                    // Отпечаток уже сохранён
+                    const value = results.rows.item(0).value;
+                    parent.postMessage(`Fingerprint (из WebSQL): ${value}`, "*");
+                } else {
+                    // Создаём и сохраняем отпечаток
+                    const value = 'fp_' + Math.random().toString(36).substring(2);
+                    tx.executeSql('INSERT INTO fp (id, value) VALUES (1, ?)', [value]);
+                    parent.postMessage(`Fingerprint создан и сохранён (WebSQL): ${value}`, "*");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
